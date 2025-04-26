@@ -96,3 +96,124 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+
+PlayGround Query-
+
+
+
+1-registerAdmin
+
+
+ mutation {
+  registerAdmin(email: "admin@example.com", password: "123456") {
+    _id
+    email
+    role
+  }
+}
+
+2- Admin login
+
+mutation {
+  login(email: "admin@example.com", password: "123456") {
+    access_token
+    admin {
+      _id
+      email
+      role
+    }
+  }
+}
+
+Token- You will be recieve token like this after login
+
+{
+  "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODBiNzg4NTZjNDlhMTEyNTRmZTE5NWMiLCJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQ1NjU2OTQ4fQ.VrknM31YgBdKW4ySHEeMMWLhqcAJ-cDL4ZtOwjXLiMc"
+}
+
+
+3-createLead
+
+mutation {
+  createLead(input: {
+    name: "Alice",
+    email: "alice@example.com",
+    phone: "1234567890",
+    division: "ITConnect",
+    message: "Interested in your product"
+  }) {
+    _id
+    name
+    status
+  }
+}
+
+4-findAllLeads 
+
+query {
+  findAllLeads {
+    _id
+    name
+    email
+    status
+    createdAt
+  }
+}
+
+5-getLeadById
+
+query {
+  getLeadById(id: "680b6bbba991397828d00333") {
+    _id
+    name
+    email
+    phone
+    division
+    message
+    status
+    createdAt
+  }
+}
+
+6-updateLead
+
+mutation {
+  updateLead(
+    id: "680b6bbba991397828d00333"
+    input: {
+      name: "imran"
+      email: "imran@example.com"
+      phone: "1234567890"
+      division: "Marketing"
+      message: "Updated message"
+      status: "active"
+    }
+  ) {
+    _id
+    name
+    email
+    phone
+    division
+    message
+    status
+    createdAt
+  }
+}
+
+
+
+
+
+
+
+
+
+>>>>>>> origin/feature-auth
