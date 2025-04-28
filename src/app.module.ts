@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { LeadsModule } from './leads/leads.module';
 import { AuthModule } from './auth/auth.module';
 import { AdminModule } from './admin/admin.module';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
@@ -23,6 +24,8 @@ import { AdminModule } from './admin/admin.module';
     AuthModule,
 
     AdminModule,
+
+    ProductsModule
     // Add your feature modules here later
   ],
 })
