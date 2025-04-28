@@ -7,6 +7,7 @@ import { LeadsModule } from './leads/leads.module';
 import { AuthModule } from './auth/auth.module';
 import { AdminModule } from './admin/admin.module';
 import { ProductsModule } from './products/products.module';
+import { TicketsModule } from './tickets/tickets.module';
 
 @Module({
   imports: [
@@ -25,8 +26,10 @@ import { ProductsModule } from './products/products.module';
 
     AdminModule,
 
-    ProductsModule
-    // Add your feature modules here later
+    ProductsModule,
+
+    TicketsModule
+   
   ],
 })
 export class AppModule {}
