@@ -217,3 +217,96 @@ mutation {
 
 
 >>>>>>> origin/feature-auth
+
+
+Create Product Query
+
+1 Create Product
+
+mutation {
+  createProduct(createProductInput: {
+    name: "CloudDrive",
+    description: "A cloud storage solution.",
+    category: "Cloud",
+    price: 49.99,
+    images: ["image1.jpg", "image2.jpg"]
+  }) {
+    _id
+    name
+    description
+    category
+    price
+    images
+    stockStatus
+    createdAt
+  }
+}
+
+2 Get All Products
+
+query {
+  products {
+    _id
+    name
+    description
+    category
+    price
+    images
+    stockStatus
+    createdAt
+  }
+}
+
+3 Get Product By ID
+
+query {
+  product(id: "60d0fe4f5311236168a109ca") {
+    _id
+    name
+    description
+    category
+    price
+    images
+    stockStatus
+    createdAt
+  }
+}
+
+4 Update Product
+
+mutation {
+  updateProduct(updateProductInput: {
+    id: "60d0fe4f5311236168a109ca",
+    name: "Updated CloudDrive",
+    description: "Updated cloud storage description.",
+    category: "Cloud",
+    price: 59.99,
+    images: ["image3.jpg", "image4.jpg"]
+  }) {
+    _id
+    name
+    description
+    category
+    price
+    images
+    stockStatus
+    createdAt
+  }
+}
+
+5 Delete Product
+
+mutation {
+  removeProduct(id: "60d0fe4f5311236168a109ca") {
+    _id
+    name
+    description
+    category
+    price
+    images
+    stockStatus
+    createdAt
+  }
+}
+
+
