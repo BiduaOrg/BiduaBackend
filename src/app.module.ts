@@ -7,6 +7,7 @@ import { LeadsModule } from './leads/leads.module';
 import { AuthModule } from './auth/auth.module';
 import { AdminModule } from './admin/admin.module';
 import { ProductsModule } from './products/products.module';
+import { TicketsModule } from './tickets/tickets.module';
 import { ServicesModule } from './services/services.module';
 import { ServiceOrdersModule } from './service-orders/service-orders.module';
 import GraphQLJSON, { GraphQLJSONObject } from 'graphql-type-json';
@@ -24,16 +25,12 @@ import GraphQLJSON, { GraphQLJSONObject } from 'graphql-type-json';
     }),
 
     LeadsModule,
-
     AuthModule,
-
     AdminModule,
-
     ProductsModule,
-
+    TicketsModule,
     ServicesModule,
-
-    ServiceOrdersModule
+    ServiceOrdersModule,
     // Add your feature modules here later
   ],
 })
