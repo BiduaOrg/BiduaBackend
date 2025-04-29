@@ -99,121 +99,285 @@ Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
 <<<<<<< HEAD
 =======
 
-
-
-
-
-
-
 PlayGround Query-
-
-
 
 1-registerAdmin
 
-
- mutation {
-  registerAdmin(email: "admin@example.com", password: "123456") {
-    _id
-    email
-    role
-  }
+mutation {
+registerAdmin(email: "admin@example.com", password: "123456") {
+\_id
+email
+role
+}
 }
 
 2- Admin login
 
 mutation {
-  login(email: "admin@example.com", password: "123456") {
-    access_token
-    admin {
-      _id
-      email
-      role
-    }
-  }
+login(email: "admin@example.com", password: "123456") {
+access_token
+admin {
+\_id
+email
+role
+}
+}
 }
 
 Token- You will be recieve token like this after login
 
 {
-  "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODBiNzg4NTZjNDlhMTEyNTRmZTE5NWMiLCJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQ1NjU2OTQ4fQ.VrknM31YgBdKW4ySHEeMMWLhqcAJ-cDL4ZtOwjXLiMc"
+"Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODBiNzg4NTZjNDlhMTEyNTRmZTE5NWMiLCJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQ1NjU2OTQ4fQ.VrknM31YgBdKW4ySHEeMMWLhqcAJ-cDL4ZtOwjXLiMc"
 }
-
 
 3-createLead
 
 mutation {
-  createLead(input: {
-    name: "Alice",
-    email: "alice@example.com",
-    phone: "1234567890",
-    division: "ITConnect",
-    message: "Interested in your product"
-  }) {
-    _id
-    name
-    status
-  }
+createLead(input: {
+name: "Alice",
+email: "alice@example.com",
+phone: "1234567890",
+division: "ITConnect",
+message: "Interested in your product"
+}) {
+\_id
+name
+status
+}
 }
 
-4-findAllLeads 
+4-findAllLeads
 
 query {
-  findAllLeads {
-    _id
-    name
-    email
-    status
-    createdAt
-  }
+findAllLeads {
+\_id
+name
+email
+status
+createdAt
+}
 }
 
 5-getLeadById
 
 query {
-  getLeadById(id: "680b6bbba991397828d00333") {
-    _id
-    name
-    email
-    phone
-    division
-    message
-    status
-    createdAt
-  }
+getLeadById(id: "680b6bbba991397828d00333") {
+\_id
+name
+email
+phone
+division
+message
+status
+createdAt
+}
 }
 
 6-updateLead
 
 mutation {
-  updateLead(
-    id: "680b6bbba991397828d00333"
-    input: {
-      name: "imran"
-      email: "imran@example.com"
-      phone: "1234567890"
-      division: "Marketing"
-      message: "Updated message"
-      status: "active"
-    }
-  ) {
-    _id
+updateLead(
+id: "680b6bbba991397828d00333"
+input: {
+name: "imran"
+email: "imran@example.com"
+phone: "1234567890"
+division: "Marketing"
+message: "Updated message"
+status: "active"
+}
+) {
+\_id
+name
+email
+phone
+division
+message
+status
+createdAt
+}
+}
+
+> > > > > > > origin/feature-auth
+
+ORDERS :-
+
+1. POST
+   mutation {
+   createOrder(
+   createOrderInput: {
+   user: {
+   name: "zehara"
+   email: "zehara@gmail.com"
+   phone: "9578797979"
+   }
+   productId: "680f26b2745215bd3eb09ba9"
+   quantity: 12
+   amount: 800
+   }
+   ) {
+   id
+   amount
+   status
+   createdAt
+   user {
+   name
+   email
+   }
+   }
+   }
+
+OUTPUT :-
+{
+"data": {
+"createOrder": {
+"id": "6810a57e48edae3e9f10ac9d",
+"amount": 800,
+"status": "pending",
+"createdAt": "2025-04-29T10:10:06.775Z",
+"user": {
+"name": "zehara",
+"email": "zehara@gmail.com"
+}
+}
+}
+}
+
+2. FINDALL
+   query {
+   orders {
+   id
+   quantity
+   amount
+   status
+   createdAt
+   }
+   }
+
+OUTPUT :-
+{
+"data": {
+"orders": [
+{
+"id": "680f1f4eeaf7d45c8dfaa2d0",
+"quantity": 2,
+"amount": 500,
+"status": "pending",
+"createdAt": "2025-04-28T06:25:18.866Z"
+},
+{
+"id": "680f1f50eaf7d45c8dfaa2d2",
+"quantity": 2,
+"amount": 500,
+"status": "pending",
+"createdAt": "2025-04-28T06:25:20.292Z"
+},
+{
+"id": "680f1f50eaf7d45c8dfaa2d4",
+"quantity": 2,
+"amount": 500,
+"status": "pending",
+"createdAt": "2025-04-28T06:25:20.812Z"
+},
+{
+"id": "680f1f51eaf7d45c8dfaa2d6",
+"quantity": 2,
+"amount": 500,
+"status": "pending",
+"createdAt": "2025-04-28T06:25:21.047Z"
+},
+{
+"id": "680f669d3aaa37ca4cdaa05a",
+"quantity": 2,
+"amount": 500,
+"status": "pending",
+"createdAt": "2025-04-28T11:29:33.902Z"
+},
+{
+"id": "680f67b02e65541d98e2b612",
+"quantity": 2,
+"amount": 500,
+"status": "pending",
+"createdAt": "2025-04-28T11:34:08.663Z"
+},
+{
+"id": "6810827b55964f90c501f31a",
+"quantity": 2,
+"amount": 199998,
+"status": "pending",
+"createdAt": "2025-04-29T07:40:43.649Z"
+},
+{
+"id": "68108337ea63fb485f27d9c9",
+"quantity": 2,
+"amount": 500,
+"status": "pending",
+"createdAt": "2025-04-29T07:43:51.999Z"
+},
+{
+"id": "681083a6ea63fb485f27d9cb",
+"quantity": 2,
+"amount": 500,
+"status": "pending",
+"createdAt": "2025-04-29T07:45:42.758Z"
+},
+{
+"id": "68109139dd2549bf1dba2421",
+"quantity": 2,
+"amount": 500,
+"status": "pending",
+"createdAt": "2025-04-29T08:43:37.528Z"
+},
+{
+"id": "6810a57e48edae3e9f10ac9d",
+"quantity": 12,
+"amount": 800,
+"status": "pending",
+"createdAt": "2025-04-29T10:10:06.775Z"
+}
+]
+}
+}
+
+3.  FINDONE :-
+    query {
+    order(id: "68109139dd2549bf1dba2421") {
+    id
+    user {
     name
     email
     phone
-    division
-    message
+    }
+    productId {
+    name
+    price
+    }
+    quantity
+    amount
     status
     createdAt
-  }
+    }
+    }
+
+OUTPUT :-
+
+{
+"data": {
+"order": {
+"id": "68109139dd2549bf1dba2421",
+"user": {
+"name": "John Doe",
+"email": "john@example.com",
+"phone": "9876543210"
+},
+"productId": {
+"name": "Laptop",
+"price": 99999
+},
+"quantity": 2,
+"amount": 500,
+"status": "pending",
+"createdAt": "2025-04-29T08:43:37.528Z"
 }
-
-
-
-
-
-
-
-
-
->>>>>>> origin/feature-auth
+}
+}
