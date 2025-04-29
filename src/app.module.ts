@@ -7,6 +7,8 @@ import { LeadsModule } from './leads/leads.module';
 import { AuthModule } from './auth/auth.module';
 import { AdminModule } from './admin/admin.module';
 import { ProductsModule } from './products/products.module';
+import { OrderModule } from './order/order.module';
+
 
 @Module({
   imports: [
@@ -25,7 +27,9 @@ import { ProductsModule } from './products/products.module';
 
     AdminModule,
 
-    ProductsModule
+    ProductsModule,
+
+    OrderModule,
     // Add your feature modules here later
   ],
 })
