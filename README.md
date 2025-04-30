@@ -310,6 +310,118 @@ mutation {
 }
 
 
+
+Services
+
+1 - CreateService
+
+
+mutation CreateService {
+  createService(
+    input: {
+      title: "Human Verification"
+      slug: "human-verification"
+      description: "We verify human identity through multiple checks."
+      price: 499
+      fields: ["Name", "Address", "Phone", "Email"]
+    }
+  ) {
+    _id
+    title
+    slug
+    description
+    price
+    fields
+    createdAt
+  }
+}
+
+
+2 - GetAllServices
+
+query GetAllServices {
+  getAllServices {
+    _id
+    title
+    slug
+    description
+    price
+    fields
+    createdAt
+  }
+}
+
+
+3 - GetServiceBySlug
+
+
+query GetServiceBySlug {
+  getServiceBySlug(slug: "human-verification") {
+    _id
+    title
+    slug
+    description
+    price
+    fields
+    createdAt
+  }
+}
+
+
+
+Service Order
+
+1 - createServiceOrder
+
+mutation {
+  createServiceOrder(
+    input: {
+      serviceSlug: "human-verification",
+      data: {
+        Name: "John",
+        Address: "123 Street",
+        Phone: "9876543210",
+        Email: "john@example.com"
+      },
+      userEmail: "john@example.com",
+      razorpay_order_id: "order_xyz123",
+      razorpay_payment_id: "pay_abc456",
+      razorpay_signature: "sig_sample"
+    }
+  ) {
+    
+    serviceSlug
+    data
+    userEmail
+    status
+    createdAt
+  }
+}
+
+
+2 - GetAllServiceOrders
+
+
+query GetAllServiceOrders {
+  getAllServiceOrders {
+    
+    serviceSlug
+    data
+    userEmail
+    razorpay_order_id
+    razorpay_payment_id
+    razorpay_signature
+    status
+    mediaLinks
+    createdAt
+  }
+}
+
+
+
+
+
+
 Tickets
 1.Post(Create Ticket)
 mutation {

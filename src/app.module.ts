@@ -8,6 +8,9 @@ import { AuthModule } from './auth/auth.module';
 import { AdminModule } from './admin/admin.module';
 import { ProductsModule } from './products/products.module';
 import { TicketsModule } from './tickets/tickets.module';
+import { ServicesModule } from './services/services.module';
+import { ServiceOrdersModule } from './service-orders/service-orders.module';
+import GraphQLJSON, { GraphQLJSONObject } from 'graphql-type-json';
 
 @Module({
   imports: [
@@ -17,19 +20,18 @@ import { TicketsModule } from './tickets/tickets.module';
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: true,
+      // resolvers: { JSON: GraphQLJSON, JSONObject: GraphQLJSONObject },
       playground: true,
     }),
 
     LeadsModule,
-
     AuthModule,
-
     AdminModule,
-
     ProductsModule,
-
-    TicketsModule
-   
+    TicketsModule,
+    ServicesModule,
+    ServiceOrdersModule,
+    // Add your feature modules here later
   ],
 })
 export class AppModule {}
