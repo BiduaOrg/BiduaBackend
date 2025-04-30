@@ -417,6 +417,145 @@ query GetAllServiceOrders {
   }
 }
 
+Users
+1.Post(Create User)
+mutation {
+  createUser(
+    createUserInput: {
+      name: "Hyder"
+      email: "hyder@example.com"
+      phone: "9876543210"
+      type: "customer"
+    }
+  ) {
+    _id
+    name
+    email
+    phone
+    type
+  }
+}
+
+Output:-
+{
+  "data": {
+    "createUser": {
+      "_id": "6811dc2974366f340384fbe2",
+      "name": "Hyder",
+      "email": "hyder@example.com",
+      "phone": "9876543210",
+      "type": "customer"
+    }
+  }
+}
+
+2.Get (FindAll users)
+query {
+  users {
+    _id
+    name
+    email
+    phone
+    type
+  }
+}
+
+OUTPUT:-
+{
+  "data": {
+    "users": [
+      {
+        "_id": "6811dab274366f340384fbdf",
+        "name": "Hyder",
+        "email": "hyder@example.com",
+        "phone": "9876543210",
+        "type": "customer"
+      },
+      {
+        "_id": "6811da0a74366f340384fbd7",
+        "name": "Bilal Hyder",
+        "email": "bilal@example.com",
+        "phone": "1234567890",
+        "type": "partner"
+      },
+      {
+        "_id": "6811da9574366f340384fbdd",
+        "name": "Zehra",
+        "email": "zehra@example.com",
+        "phone": "9876543210",
+        "type": "customer"
+      }
+    ]
+  }
+}
+
+3.Get (Find One User)
+query {
+  user(id: "6811dab274366f340384fbdf") {
+    _id
+    name
+    email
+    phone
+    type
+  }
+}
+
+OUTPUT:-
+{
+  "data": {
+    "user": {
+      "_id": "6811da0a74366f340384fbd7",
+      "name": "Hyder",
+      "email": "hyder@example.com",
+      "phone": "9876543210",
+      "type": "customer"
+    }
+  }
+}
+
+4.PATCH (Update User)
+mutation {
+  updateUser(
+    id: "6811da0a74366f340384fbd7"
+    updateUserInput: {
+      name: "Bilal Hyder"
+      email: "Bilal@example.com"
+      phone: "1234567890"
+      type: "partner"
+    }
+  ) {
+    _id
+    name
+    email
+    phone
+    type
+  }
+}
+
+OUTPUT:-
+{
+  "data": {
+    "updateUser": {
+      "_id": "6811da0a74366f340384fbd7",
+      "name": "Bilal Hyder",
+      "email": "Bilal@example.com",
+      "phone": "1234567890",
+      "type": "partner"
+    }
+  }
+}
+
+5.Delete (Remove User)
+mutation {
+  removeUser(id: "6811da0a74366f340384fbd7")
+}
+
+OUTPUT:-
+{
+  "data": {
+    "removeUser": true
+  }
+}
 
 
 
