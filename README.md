@@ -310,3 +310,182 @@ mutation {
 }
 
 
+Tickets
+1.Post(Create Ticket)
+mutation {
+  createTicket(createTicketInput: {
+    name: "Ali Khan",
+    email: "ali@example.com",
+    subject: "Payment Issue",
+    message: "I am facing a problem with my last payment."
+  }) {
+    id
+    name
+    email
+    subject
+    message
+    status
+    createdAt
+  }
+}
+
+OUTPUT:-
+{
+  "data": {
+    "createTicket": {
+      "id": "6811bea358f896f3ec75f16f",
+      "name": "Ali Khan",
+      "email": "ali@example.com",
+      "subject": "Payment Issue",
+      "message": "I am facing a problem with my last payment.",
+      "status": "open",
+      "createdAt": "2025-04-30T06:09:39.959Z"
+    }
+  }
+}
+
+2:Patch(Update Ticket)
+mutation {
+  updateTicket(id: "6811bccd58f896f3ec75f164", updateTicketInput: {
+    status: "in-progress",
+    note: "We are working on your issue."
+  }) {
+    id
+    status
+    notes {
+      body
+      addedBy
+      createdAt
+    }
+  }
+}
+
+OUTPUT:-
+{
+  "data": {
+    "updateTicket": {
+      "id": "6811bccd58f896f3ec75f164",
+      "status": "in-progress",
+      "notes": [
+        {
+          "body": "We are working on your issue.",
+          "addedBy": "Support Team",
+          "createdAt": "2025-04-30T06:03:51.109Z"
+        }
+      ]
+    }
+  }
+}
+
+3.Get(FindAll Tickets)
+query {
+  tickets {
+    id
+    name
+    email
+    subject
+    message
+    status
+    notes {
+      body
+      addedBy
+      createdAt
+    }
+    createdAt
+  }
+}
+
+OUTPUT:-
+{
+  "data": {
+    "tickets": [
+      {
+        "id": "6811bccd58f896f3ec75f164",
+        "name": "Ali Khan",
+        "email": "ali@example.com",
+        "subject": "Payment Issue",
+        "message": "I am facing a problem with my last payment.",
+        "status": "in-progress",
+        "notes": [
+          {
+            "body": "We are working on your issue.",
+            "addedBy": "Support Team",
+            "createdAt": "2025-04-30T06:03:51.109Z"
+          }
+        ],
+        "createdAt": "2025-04-30T06:01:49.182Z"
+      },
+      {
+        "id": "680f5da83b2309bc7d4bcd68",
+        "name": "John Doe",
+        "email": "john.doe@example.com",
+        "subject": "Issue with login",
+        "message": "I am unable to log in to my account.",
+        "status": "open",
+        "notes": [],
+        "createdAt": "2025-04-28T10:51:20.197Z"
+      },
+      {
+        "id": "680f59ddaffed581955948e2",
+        "name": "John Doe",
+        "email": "john@example.com",
+        "subject": "Support Needed",
+        "message": "I need help with my account",
+        "status": "solved",
+        "notes": [
+          {
+            "body": "The issue has been resolved and ticket is closed.",
+            "addedBy": "Support Team",
+            "createdAt": "2025-04-28T10:43:52.856Z"
+          }
+        ],
+        "createdAt": "2025-04-28T10:35:09.158Z"
+      }
+    ]
+  }
+}
+
+4.Get (Find one ticket)
+query {
+  ticket(id: "6811bfe458f896f3ec75f176") {
+    id
+    name
+    email
+    subject
+    message
+    status
+    notes {
+      body
+      addedBy
+      createdAt
+    }
+    createdAt
+  }
+}
+
+OUTPUT:-
+{
+  "data": {
+    "ticket": {
+      "id": "6811bfe458f896f3ec75f176",
+      "name": "Ali Khan",
+      "email": "ali@example.com",
+      "subject": "Payment Issue",
+      "message": "I am facing a problem with my last payment.",
+      "status": "open",
+      "notes": [],
+      "createdAt": "2025-04-30T06:15:00.798Z"
+    }
+  }
+}
+
+5.Delete(Remove Ticket)
+mutation {
+  removeTicket(id: "6811bccd58f896f3ec75f164")
+}
+OUTPUT:-
+{
+  "data": {
+    "removeTicket": true
+  }
+}
