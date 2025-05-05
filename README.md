@@ -200,9 +200,10 @@ createdAt
 
 > > > > > > > origin/feature-auth
 
-ORDERS :-
+<---------ORDERS----------------->
 
-1. POST
+1. POST :-
+
    mutation {
    createOrder(
    createOrderInput: {
@@ -243,7 +244,8 @@ OUTPUT :-
 }
 }
 
-2. FINDALL
+2. FINDALL:-
+
    query {
    orders {
    id
@@ -381,3 +383,406 @@ OUTPUT :-
 }
 }
 }
+
+<-------------- AGENCY--------------->
+
+1.  POST METHOD:-
+
+Url :- http://localhost:3000/admin/agencies
+JSON :-
+{
+"name": "smriti Agency",
+"phone": "9876543210",
+"email": "smriti@gmail.com",
+"district": "Jaipur",
+"state": "Rajasthan",
+"type": "District",
+"depositPaid": true
+}
+
+Output :-
+{
+"name": "smriti Agency",
+"phone": "9876543210",
+"email": "smriti@gmail.com",
+"district": "Jaipur",
+"state": "Rajasthan",
+"type": "District",
+"depositPaid": true,
+"status": "active",
+"\_id": "681880852f91ef2d9ad11f3a",
+"createdAt": "2025-05-05T09:10:29.344Z",
+"\_\_v": 0
+}
+
+2.  GET METHOD :-
+
+    findAll -
+    Url :- http://localhost:3000/admin/agencies
+
+        Output :-
+                 [
+        {
+            "_id": "6815d15deeb028614e500cd8",
+            "name": "ABC Agency",
+            "phone": "1234567890",
+            "email": "contact@abcagency.com",
+            "district": "District1",
+            "state": "State1",
+            "type": "urban",
+            "depositPaid": true,
+            "status": "Deactive",
+            "createdAt": "2025-05-03T08:18:37.013Z",
+            "__v": 0
+        },
+        {
+            "_id": "6815d3c8eeb028614e500cdd",
+            "name": "Smriti Agency",
+            "phone": "9334249895",
+            "email": "smriti@gmail.com",
+            "district": "Katihar",
+            "state": "Bihar",
+            "type": "urban",
+            "depositPaid": true,
+            "status": "active",
+            "createdAt": "2025-05-03T08:28:56.227Z",
+            "__v": 0
+        },
+        {
+            "_id": "6815d3d6eeb028614e500cdf",
+            "name": "Smriti Agency",
+            "phone": "9334249895",
+            "email": "smriti@gmail.com",
+            "district": "Katihar",
+            "state": "Bihar",
+            "type": "urban",
+            "depositPaid": false,
+            "status": "Deactive",
+            "createdAt": "2025-05-03T08:29:10.776Z",
+            "__v": 0
+        },
+        {
+            "_id": "681880602f91ef2d9ad11f38",
+            "name": "ABC Agency",
+            "phone": "9876543210",
+            "email": "abc@example.com",
+            "district": "Jaipur",
+            "state": "Rajasthan",
+            "type": "District",
+            "depositPaid": true,
+            "status": "active",
+            "createdAt": "2025-05-05T09:09:52.831Z",
+            "__v": 0
+        },
+        {
+            "_id": "681880852f91ef2d9ad11f3a",
+            "name": "smriti Agency",
+            "phone": "9876543210",
+            "email": "smriti@gmail.com",
+            "district": "Jaipur",
+            "state": "Rajasthan",
+            "type": "District",
+            "depositPaid": true,
+            "status": "active",
+            "createdAt": "2025-05-05T09:10:29.344Z",
+            "__v": 0
+        }
+
+    ]
+
+3.  PATCH METHOD :-
+
+        Url :- http://localhost:3000/admin/agencies/681880852f91ef2d9ad11f3a/status
+        JSON :-
+        {
+        "status": "Deactive"
+        }
+
+             OUTPUT :-
+                      {
+            "_id": "681880852f91ef2d9ad11f3a",
+            "name": "smriti Agency",
+            "phone": "9876543210",
+            "email": "smriti@gmail.com",
+            "district": "Jaipur",
+            "state": "Rajasthan",
+            "type": "District",
+            "depositPaid": true,
+            "status": "Deactive",
+            "createdAt": "2025-05-05T09:10:29.344Z",
+            "__v": 0
+
+        }
+
+        <------------------BLOCK MANAGER -------------------------------------->
+
+4.  POST METHOD :-
+    Url :- http://localhost:3000/admin/block-managers
+
+          JSON :-
+                   {
+
+
+    "agencyId": "681880852f91ef2d9ad11f3a",
+    "name": "Ravi Kumar",
+    "phone": "9876543210",
+    "email": "ravi@example.com",
+    "state": "Rajasthan",
+    "district": "Jaipur",
+    "block": "Amber",
+    "assignedLeads": ["6637e5a2c10d8fba9f6a9999"],
+    "status": "active"
+    }
+
+         OUTPUT :-
+              {
+        "agencyId": "681880852f91ef2d9ad11f3a",
+        "name": "Ravi Kumar",
+        "phone": "9876543210",
+        "email": "ravi@example.com",
+        "state": "Rajasthan",
+        "district": "Jaipur",
+        "block": "Amber",
+        "assignedLeads": [
+            "6637e5a2c10d8fba9f6a9999"
+        ],
+        "status": "active",
+        "_id": "6818863a2f91ef2d9ad11f41",
+        "__v": 0
+
+    }
+
+4.  GET METHOD :-
+    FindAll -
+    url :- http://localhost:3000/admin/block-managers
+
+         OUTPUT :-
+
+    [
+    {
+    "\_id": "6815fbc73e9ba5704b476008",
+    "agencyId": {
+    "\_id": "6815d15deeb028614e500cd8",
+    "name": "ABC Agency",
+    "phone": "1234567890",
+    "email": "contact@abcagency.com",
+    "district": "District1",
+    "state": "State1",
+    "type": "urban",
+    "depositPaid": true,
+    "status": "Deactive",
+    "createdAt": "2025-05-03T08:18:37.013Z",
+    "**v": 0
+    },
+    "name": "Ravi Kumar",
+    "phone": "9876543210",
+    "email": "ravi.kumar@example.com",
+    "state": "State1",
+    "district": "District1",
+    "block": "BlockA",
+    "assignedLeads": [],
+    "status": "Deactive",
+    "**v": 0
+    },
+    {
+    "\_id": "6815fe6b3e9ba5704b476011",
+    "agencyId": {
+    "\_id": "6815d3c8eeb028614e500cdd",
+    "name": "Smriti Agency",
+    "phone": "9334249895",
+    "email": "smriti@gmail.com",
+    "district": "Katihar",
+    "state": "Bihar",
+    "type": "urban",
+    "depositPaid": true,
+    "status": "active",
+    "createdAt": "2025-05-03T08:28:56.227Z",
+    "**v": 0
+    },
+    "name": "Ujjwal",
+    "phone": "9570479775",
+    "email": "ujjwal@gmail.com",
+    "state": "Bhopal",
+    "district": "District5",
+    "block": "BlockD",
+    "assignedLeads": [],
+    "status": "active",
+    "**v": 0
+    },
+    {
+    "\_id": "6818863a2f91ef2d9ad11f41",
+    "agencyId": {
+    "\_id": "681880852f91ef2d9ad11f3a",
+    "name": "smriti Agency",
+    "phone": "9876543210",
+    "email": "smriti@gmail.com",
+    "district": "Jaipur",
+    "state": "Rajasthan",
+    "type": "District",
+    "depositPaid": true,
+    "status": "Deactive",
+    "createdAt": "2025-05-05T09:10:29.344Z",
+    "**v": 0
+    },
+    "name": "Ravi Kumar",
+    "phone": "9876543210",
+    "email": "ravi@example.com",
+    "state": "Rajasthan",
+    "district": "Jaipur",
+    "block": "Amber",
+    "assignedLeads": [],
+    "status": "active",
+    "**v": 0
+    }
+    ]
+
+5.  PATCH METHOD :-
+    url :- http://localhost:3000/admin/block-managers/6818863a2f91ef2d9ad11f41/status
+
+           JSON :- {
+
+    "status": "deactive"
+    }
+
+        OUTPUT :-
+                   {
+        "_id": "6818863a2f91ef2d9ad11f41",
+        "agencyId": "681880852f91ef2d9ad11f3a",
+        "name": "Ravi Kumar",
+        "phone": "9876543210",
+        "email": "ravi@example.com",
+        "state": "Rajasthan",
+        "district": "Jaipur",
+        "block": "Amber",
+        "assignedLeads": [
+            "6637e5a2c10d8fba9f6a9999"
+        ],
+        "status": "deactive",
+        "__v": 0
+
+    }
+
+<-------------------RIDER---------------------------------->
+
+1. POST METHOD :-
+   Url :-http://localhost:3000/riders
+   JSON :-
+   {
+   "blockManagerId": "6818863a2f91ef2d9ad11f41",
+   "name": "Ankit Sharma",
+   "phone": "9876543210",
+   "assignedPincode": "302020",
+   "status": "Deactive"
+   }
+
+OUTPUT :-
+{
+"blockManagerId": "6818863a2f91ef2d9ad11f41",
+"name": "Ankit Sharma",
+"phone": "9876543210",
+"assignedPincode": "302020",
+"status": "Deactive",
+"\_id": "68188c072f91ef2d9ad11f47",
+"\_\_v": 0
+}
+
+2.  GET METHOD :-
+
+        FindAll -
+          url :-  http://localhost:3000/riders
+
+          OUTPUT :-
+               [
+        {
+            "_id": "6816065bbb3a71915f51fdf3",
+            "blockManagerId": {
+                "_id": "6815fe6b3e9ba5704b476011",
+                "agencyId": "6815d3c8eeb028614e500cdd",
+                "name": "Ujjwal",
+                "phone": "9570479775",
+                "email": "ujjwal@gmail.com",
+                "state": "Bhopal",
+                "district": "District5",
+                "block": "BlockD",
+                "assignedLeads": [
+                    "661fb6e0b01b3a5fd4b62be0",
+                    "661fb7a2c16de645a3a50fd2"
+                ],
+                "status": "active",
+                "__v": 0
+            },
+            "name": "sonu yadav",
+            "phone": "9876543210",
+            "assignedPincode": "854114",
+            "status": "active",
+            "__v": 0
+        },
+        {
+            "_id": "68185997f1d7de531dfbb9bd",
+            "blockManagerId": {
+                "_id": "6815fe6b3e9ba5704b476011",
+                "agencyId": "6815d3c8eeb028614e500cdd",
+                "name": "Ujjwal",
+                "phone": "9570479775",
+                "email": "ujjwal@gmail.com",
+                "state": "Bhopal",
+                "district": "District5",
+                "block": "BlockD",
+                "assignedLeads": [
+                    "661fb6e0b01b3a5fd4b62be0",
+                    "661fb7a2c16de645a3a50fd2"
+                ],
+                "status": "active",
+                "__v": 0
+            },
+            "name": "Rider Ujjwal",
+            "phone": "9876543210",
+            "assignedPincode": "462001",
+            "status": "Deactive",
+            "__v": 0
+        },
+        {
+            "_id": "68188c072f91ef2d9ad11f47",
+            "blockManagerId": {
+                "_id": "6818863a2f91ef2d9ad11f41",
+                "agencyId": "681880852f91ef2d9ad11f3a",
+                "name": "Ravi Kumar",
+                "phone": "9876543210",
+                "email": "ravi@example.com",
+                "state": "Rajasthan",
+                "district": "Jaipur",
+                "block": "Amber",
+                "assignedLeads": [
+                    "6637e5a2c10d8fba9f6a9999"
+                ],
+                "status": "deactive",
+                "__v": 0
+            },
+            "name": "Ankit Sharma",
+            "phone": "9876543210",
+            "assignedPincode": "302020",
+            "status": "Deactive",
+            "__v": 0
+        }
+
+    ]
+
+3.  PATCH METHOD :-
+
+    Url :- http://localhost:3000/riders/6816065bbb3a71915f51fdf3/status
+    JSON :-  
+     {
+    "status": "Active"
+    }
+
+        OUTPUT :-
+               {
+        "_id": "6816065bbb3a71915f51fdf3",
+        "blockManagerId": "6815fe6b3e9ba5704b476011",
+        "name": "sonu yadav",
+        "phone": "9876543210",
+        "assignedPincode": "854114",
+        "status": "Active",
+        "__v": 0
+
+    }
