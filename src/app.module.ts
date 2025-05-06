@@ -19,6 +19,7 @@ import { RiderModule } from './rider/rider.module';
 import { TicketsModule } from './tickets/tickets.module';
 import { ServicesModule } from './services/services.module';
 import { ServiceOrdersModule } from './service-orders/service-orders.module';
+import { UsersModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -29,7 +30,7 @@ import { ServiceOrdersModule } from './service-orders/service-orders.module';
     MongooseModule.forRoot(process.env.MONGO_URI || 'mongodb://localhost:27017/bidua'),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'), // Better for schema persistence
       playground: true,
       introspection: true,
       resolvers: { JSON: GraphQLJSON, JSONObject: GraphQLJSONObject },
@@ -46,6 +47,7 @@ import { ServiceOrdersModule } from './service-orders/service-orders.module';
     TicketsModule,
     ServicesModule,
     ServiceOrdersModule,
+    UsersModule,
   ],
 })
 export class AppModule {}
