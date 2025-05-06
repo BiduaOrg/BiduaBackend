@@ -96,8 +96,7 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
-<<<<<<< HEAD
-=======
+
 
 PlayGround Query-
 
@@ -197,8 +196,7 @@ status
 createdAt
 }
 }
-
-> > > > > > > origin/feature-auth
+ origin/feature-auth
 
 <---------ORDERS----------------->
 
@@ -660,6 +658,7 @@ Output :-
         "status": "deactive",
         "__v": 0
 
+ feature-order
     }
 
 <-------------------RIDER---------------------------------->
@@ -786,3 +785,210 @@ OUTPUT :-
         "__v": 0
 
     }
+ origin/feature-auth
+
+
+Create Product Query
+
+1 Create Product
+
+mutation {
+  createProduct(createProductInput: {
+    name: "CloudDrive",
+    description: "A cloud storage solution.",
+    category: "Cloud",
+    price: 49.99,
+    images: ["image1.jpg", "image2.jpg"]
+  }) {
+    _id
+    name
+    description
+    category
+    price
+    images
+    stockStatus
+    createdAt
+  }
+}
+
+2 Get All Products
+
+query {
+  products {
+    _id
+    name
+    description
+    category
+    price
+    images
+    stockStatus
+    createdAt
+  }
+}
+
+3 Get Product By ID
+
+query {
+  product(id: "60d0fe4f5311236168a109ca") {
+    _id
+    name
+    description
+    category
+    price
+    images
+    stockStatus
+    createdAt
+  }
+}
+
+4 Update Product
+
+mutation {
+  updateProduct(updateProductInput: {
+    id: "60d0fe4f5311236168a109ca",
+    name: "Updated CloudDrive",
+    description: "Updated cloud storage description.",
+    category: "Cloud",
+    price: 59.99,
+    images: ["image3.jpg", "image4.jpg"]
+  }) {
+    _id
+    name
+    description
+    category
+    price
+    images
+    stockStatus
+    createdAt
+  }
+}
+
+5 Delete Product
+
+mutation {
+  removeProduct(id: "60d0fe4f5311236168a109ca") {
+    _id
+    name
+    description
+    category
+    price
+    images
+    stockStatus
+    createdAt
+  }
+}
+
+
+
+Services
+
+1 - CreateService
+
+
+mutation CreateService {
+  createService(
+    input: {
+      title: "Human Verification"
+      slug: "human-verification"
+      description: "We verify human identity through multiple checks."
+      price: 499
+      fields: ["Name", "Address", "Phone", "Email"]
+    }
+  ) {
+    _id
+    title
+    slug
+    description
+    price
+    fields
+    createdAt
+  }
+}
+
+
+2 - GetAllServices
+
+query GetAllServices {
+  getAllServices {
+    _id
+    title
+    slug
+    description
+    price
+    fields
+    createdAt
+  }
+}
+
+
+3 - GetServiceBySlug
+
+
+query GetServiceBySlug {
+  getServiceBySlug(slug: "human-verification") {
+    _id
+    title
+    slug
+    description
+    price
+    fields
+    createdAt
+  }
+}
+
+
+
+Service Order
+
+1 - createServiceOrder
+
+mutation {
+  createServiceOrder(
+    input: {
+      serviceSlug: "human-verification",
+      data: {
+        Name: "John",
+        Address: "123 Street",
+        Phone: "9876543210",
+        Email: "john@example.com"
+      },
+      userEmail: "john@example.com",
+      razorpay_order_id: "order_xyz123",
+      razorpay_payment_id: "pay_abc456",
+      razorpay_signature: "sig_sample"
+    }
+  ) {
+    
+    serviceSlug
+    data
+    userEmail
+    status
+    createdAt
+  }
+}
+
+
+2 - GetAllServiceOrders
+
+
+query GetAllServiceOrders {
+  getAllServiceOrders {
+    
+    serviceSlug
+    data
+    userEmail
+    razorpay_order_id
+    razorpay_payment_id
+    razorpay_signature
+    status
+    mediaLinks
+    createdAt
+  }
+}
+
+
+
+
+
+
+ develop
