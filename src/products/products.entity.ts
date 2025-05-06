@@ -22,7 +22,7 @@ export class Product {
   images: string[];
 
   @Field()
-  stockStatus: string;
+  stock: number;  // Yeh line add karein
 
   @Field()
   createdAt: Date;

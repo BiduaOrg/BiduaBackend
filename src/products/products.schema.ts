@@ -1,12 +1,21 @@
 // src/products/products.schema.ts
-import { Schema } from 'mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
 
-export const ProductSchema = new Schema({
-  name: String,
-  description: String,
-  category: String,
-  price: Number,
-  images: [String],
-  stockStatus: { type: String, default: 'available' },
-  createdAt: { type: Date, default: Date.now },
-});
+@Schema()
+export class Product {
+  @Prop({ required: true })
+  name: string;
+
+  @Prop({ required: true })
+  price: number;
+
+  @Prop({ required: true })
+  stock: number;
+}
+
+export type ProductDocument = Product & Document;
+export const ProductSchema = SchemaFactory.createForClass(Product);
+
+// Autopopulate plugin
+ProductSchema.plugin(require('mongoose-autopopulate'));

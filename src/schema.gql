@@ -1,0 +1,112 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Lead {
+  _id: ID!
+  name: String!
+  email: String!
+  phone: String!
+  division: String!
+  status: String!
+  message: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type LeadOutput {
+  _id: String!
+  name: String!
+  email: String!
+  phone: String!
+  division: String!
+  message: String!
+  status: String!
+  createdAt: DateTime!
+}
+
+type RegisterAdminOutput {
+  _id: ID!
+  email: String!
+  role: String!
+}
+
+type LoginResponse {
+  access_token: String!
+  admin: RegisterAdminOutput!
+}
+
+type Product {
+  _id: ID!
+  name: String!
+  description: String!
+  category: String!
+  price: Float!
+  images: [String!]!
+  stockStatus: String!
+  createdAt: DateTime!
+}
+
+type Query {
+  findAllLeads: [Lead!]!
+  getLeadById(id: String!): LeadOutput
+  products: [Product!]!
+  product(id: String!): Product!
+}
+
+type Mutation {
+  createLead(input: CreateLeadInput!): Lead!
+  updateLead(id: String!, input: UpdateLeadInput!): LeadOutput
+  registerAdmin(email: String!, password: String!): RegisterAdminOutput!
+  login(email: String!, password: String!): LoginResponse!
+  createProduct(createProductInput: CreateProductInput!): Product!
+  updateProduct(updateProductInput: UpdateProductInput!): Product!
+  removeProduct(id: String!): Product!
+  sendEmail(sendEmailInput: SendEmailInput!): Boolean!
+}
+
+input CreateLeadInput {
+  name: String!
+  email: String!
+  phone: String!
+  division: String!
+  message: String!
+}
+
+input UpdateLeadInput {
+  name: String
+  email: String
+  phone: String
+  division: String
+  message: String
+  status: String
+}
+
+input CreateProductInput {
+  name: String!
+  description: String!
+  category: String!
+  price: Float!
+  images: [String!]!
+}
+
+input UpdateProductInput {
+  name: String
+  description: String
+  category: String
+  price: Float
+  images: [String!]
+  id: String!
+}
+
+input SendEmailInput {
+  to: String!
+  subject: String!
+  text: String!
+  html: String
+}
