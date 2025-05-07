@@ -48,15 +48,98 @@ type Product {
   category: String!
   price: Float!
   images: [String!]!
-  stockStatus: String!
+  stock: Float!
   createdAt: DateTime!
 }
+
+type UserDetails {
+  name: String!
+  email: String!
+  phone: String!
+}
+
+type Order {
+  id: ID!
+  user: UserDetails!
+  productId: Product
+  quantity: Float!
+  amount: Float!
+  status: String!
+  createdAt: DateTime!
+}
+
+type Ticket {
+  id: ID!
+  name: String!
+  email: String!
+  subject: String!
+  message: String!
+  status: String!
+  notes: [Note!]!
+  createdAt: DateTime!
+}
+
+type Note {
+  body: String!
+  addedBy: String!
+  createdAt: DateTime!
+}
+
+type ServiceOutput {
+  _id: String!
+  title: String!
+  slug: String!
+  description: String!
+  price: Float!
+  fields: [String!]!
+  createdAt: DateTime!
+}
+
+type ServiceOrder {
+  serviceSlug: String!
+  data: JSONObject!
+  userEmail: String!
+  razorpay_order_id: String!
+  razorpay_payment_id: String!
+  razorpay_signature: String!
+  status: String!
+  mediaLinks: [String]
+  createdAt: DateTime!
+}
+
+type User {
+  _id: ID!
+  name: String!
+  email: String!
+  phone: String!
+  type: String!
+  createdAt: DateTime!
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+"""
+The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSONObject
 
 type Query {
   findAllLeads: [Lead!]!
   getLeadById(id: String!): LeadOutput
   products: [Product!]!
   product(id: String!): Product!
+  orders: [Order!]!
+  order(id: String!): Order
+  tickets: [Ticket!]!
+  ticket(id: String!): Ticket!
+  getAllServices: [ServiceOutput!]!
+  getServiceBySlug(slug: String!): ServiceOutput!
+  getAllServiceOrders: [ServiceOrder!]!
+  users: [User!]!
+  user(id: String!): User!
 }
 
 type Mutation {
@@ -68,6 +151,15 @@ type Mutation {
   updateProduct(updateProductInput: UpdateProductInput!): Product!
   removeProduct(id: String!): Product!
   sendEmail(sendEmailInput: SendEmailInput!): Boolean!
+  createOrder(createOrderInput: CreateOrderInput!): Order!
+  createTicket(createTicketInput: CreateTicketInput!): Ticket!
+  updateTicket(id: String!, updateTicketInput: UpdateTicketInput!): Ticket!
+  removeTicket(id: String!): Boolean!
+  createService(input: CreateServiceInput!): ServiceOutput!
+  createServiceOrder(input: CreateServiceOrderInput!): ServiceOrder!
+  createUser(createUserInput: CreateUserInput!): User!
+  updateUser(id: String!, updateUserInput: UpdateUserInput!): User!
+  removeUser(id: String!): Boolean!
 }
 
 input CreateLeadInput {
@@ -109,4 +201,60 @@ input SendEmailInput {
   subject: String!
   text: String!
   html: String
+}
+
+input CreateOrderInput {
+  user: UserInput!
+  productId: String!
+  quantity: Int!
+  amount: Int!
+}
+
+input UserInput {
+  name: String!
+  email: String!
+  phone: String!
+}
+
+input CreateTicketInput {
+  name: String!
+  email: String!
+  subject: String!
+  message: String!
+}
+
+input UpdateTicketInput {
+  status: String
+  note: String
+}
+
+input CreateServiceInput {
+  title: String!
+  slug: String!
+  description: String!
+  price: Float!
+  fields: [String!]!
+}
+
+input CreateServiceOrderInput {
+  serviceSlug: String!
+  data: JSONObject!
+  userEmail: String!
+  razorpay_order_id: String!
+  razorpay_payment_id: String!
+  razorpay_signature: String!
+}
+
+input CreateUserInput {
+  name: String!
+  email: String!
+  phone: String!
+  type: String!
+}
+
+input UpdateUserInput {
+  name: String
+  email: String
+  phone: String
+  type: String
 }

@@ -30,10 +30,16 @@ import { UsersModule } from './user/user.module';
     MongooseModule.forRoot(process.env.MONGO_URI || 'mongodb://localhost:27017/bidua'),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      autoSchemaFile: join(process.cwd(), 'src/schema.gql'), // Better for schema persistence
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       playground: true,
       introspection: true,
-      resolvers: { JSON: GraphQLJSON, JSONObject: GraphQLJSONObject },
+      // 👇 Yeh scalarsMap correct way hai GraphQL scalar inject karne ka
+      buildSchemaOptions: {
+        scalarsMap: [
+          { type: Object, scalar: GraphQLJSON },
+          { type: Object, scalar: GraphQLJSONObject },
+        ],
+      },
     }),
     LeadsModule,
     AuthModule,
